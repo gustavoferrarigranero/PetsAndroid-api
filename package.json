@@ -1,0 +1,21 @@
+{
+  "name": "petsandroid-api",
+  "version": "1.0.0",
+  "description": "Rest API for PetsAndroid",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "MONGO_URL=127.0.0.1 PORT=8080 nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Gustavo Ferrari",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}

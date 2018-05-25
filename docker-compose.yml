@@ -1,0 +1,15 @@
+---
+inventory:
+  build: .
+  command: npm start
+  ports:
+  - "9731:9731"
+  links:
+  - mongodb
+  - mongodb:mongodb.local
+  environment:
+    - NODE_ENV=production
+    - MONGO_URL=mongodb
+    - PORT=9731
+mongodb:
+  image: mongo
