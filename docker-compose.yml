@@ -1,4 +1,3 @@
----
 inventory:
   build: .
   command: npm start
