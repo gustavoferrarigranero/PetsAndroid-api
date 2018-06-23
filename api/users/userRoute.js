@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const User = require('./user');
 
-// Define post route
+// Define post routeç
 router.route('/').post(function (req, res) {
   const user = new User(req.body);
   user.save().then(user => {
@@ -12,6 +13,18 @@ router.route('/').post(function (req, res) {
     })
     .catch(err => {
       res.status(400).send("unable to save the user into database");
+    });
+});
+
+router.route('/login').post(function (req, res) {
+  User.findOne({ user: req.body.user, pass: req.body.pass })
+    .populate('pets')
+    .exec(function (err, user) {
+      if (!user)
+        res.status(400).send({'user': false});
+      else {
+        res.status(200).json({'user': user});
+      }
     });
 });
 
@@ -72,6 +85,7 @@ router.route('/:id').put(function (req, res) {
       user.name = req.body.name;
       user.user = req.body.user;
       user.pass = req.body.pass;
+      user.picture = req.body.picture;
 
       user.save().then(user => {
           res.json('Successfully Updated');
